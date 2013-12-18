@@ -35,6 +35,7 @@ production:
   username: root
   password:
   encoding: utf8
+  collation: utf8_general_ci
 
 development:
   adapter: mysql2
