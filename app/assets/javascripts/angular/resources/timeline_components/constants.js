@@ -41,7 +41,7 @@ timelinesApp.factory('Constants', [function() {
 
   Constants = {
     //constants and defaults
-    LOAD_ERROR_TIMEOUT: 60000,
+    LOAD_ERROR_TIMEOUT: 1200000,
     DISPLAY_ERROR_DELAY: 2000,
     PROJECT_ID_BLOCK_SIZE: 100,
     USER_ATTRIBUTES: {

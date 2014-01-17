@@ -19,7 +19,7 @@ timelinesApp.factory('Timeline', ['Constants', 'FilterQueryStringBuilder', 'Tree
   angular.extend(Timeline, {Status: Status});
   angular.extend(Timeline, {User: User});
 
-  //startup
+  // startup
   angular.extend(Timeline, {
     instances: [],
     create: function(options) {

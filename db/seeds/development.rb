@@ -127,7 +127,7 @@ print "Creating objects for..."
   puts ""
   print "......create issues"
 
-  rand(50).times do
+  rand(500).times do
     print "."
     work_package = WorkPackage.new(project: project,
                                    author: user,

@@ -450,6 +450,7 @@ timelinesApp.factory('UI', [function() {
       timeline.paper.clear();
       timeline.paper.setSize(width, height);
 
+      console.log("Render start: " + (new Date()).getTime());
       timeline.defer(function() {
         // rebuild content
         timeline.rebuildBackground(tree, width, height);
@@ -465,6 +466,7 @@ timelinesApp.factory('UI', [function() {
       // building process.
       this.setupEventHandlers();
 
+      console.log("Render done: " + (new Date()).getTime());
       root.append(info);
     },
     rebuildBackground: function(tree, width, height) {
