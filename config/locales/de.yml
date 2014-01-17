@@ -78,8 +78,6 @@ de:
         visible: "Sichtbar"
       custom_value:
         value: "Wert"
-      enumeration:
-        active: "Aktiv"
       relation:
         delay: "Pufferzeit"
         from: "Arbeitspaket"
@@ -216,9 +214,13 @@ de:
           attributes:
             due_date:
               not_start_date: "ist nicht am Startdatum, obwohl die bei Meilensteinen Pflicht ist"
-            parent:
+            parent_id:
               cannot_be_milestone: "darf kein Meilenstein sein"
               cannot_be_in_another_project: "darf nicht in einem anderen Projekt sein"
+              not_a_valid_parent: "ist ungültig"
+              does_not_exist: "existiert nicht"
+            status_id:
+              status_transition_invalid: "es existiert kein valider Übergang vom alten zum neuen Status für die aktuellen Nuter-Rollen"
         project_association:
           identical_projects: "kann nicht von einem Projekt auf sich selbst erstellt werden"
           project_association_not_allowed: "erlaubt keine Projekt-Abhängigkeiten"
@@ -270,8 +272,9 @@ de:
 
   # common attributes of all models
   attributes:
-    assigned_to: "Zugewiesen an"
     active: "Aktiv"
+    assigned_to: "Zugewiesen an"
+    attachments: "Anhänge"
     author: "Autor"
     base: "Allgemeiner Fehler:"
     blocks_ids: "Blockiert"
@@ -281,7 +284,9 @@ de:
     created_at: "Angelegt"
     created_on: "Angelegt"
     custom_values: "Benutzerdefinierte Felder"
+    default_columns: "Standard-Spalten"
     description: "Beschreibung"
+    display_sums: "Summen anzeigen"
     due_date: "Abgabedatum"
     estimated_hours: "Geschätzter Aufwand"
     firstname: "Vorname"
@@ -515,6 +520,16 @@ de:
   error_menu_item_not_created: Menüpunkt konnte nicht hinzugefügt werden.
   error_menu_item_not_saved: Menüpunkt konnte nicht aktualisiert werden.
 
+  events:
+    changeset: Changeset bearbeitet
+    message: Nachricht bearbeitet
+    news: News
+    reply: Antwort erstellt
+    time_entry: Zeiterfassungseintrag-Bearbeitung
+    wiki_page: Wiki-Bearbeitung
+    work_package_closed: 'Arbeitspaket geschlossen'
+    work_package_edit: 'Arbeitspaket bearbeitet'
+    work_package_note: 'Arbeitspaket kommentiert'
 
   general_csv_decimal_separator: ","
   general_csv_encoding: "ISO-8859-1"
@@ -568,6 +583,8 @@ de:
     filter:
       noneElement: "(keines)"
       noneSelection: "(keine)"
+    label_collapse_all: "Alle zuklappen"
+    label_expand_all: "Alle aufklappen"
 
   label_account: "Konto"
   label_activity: "Aktivität"
@@ -629,6 +646,8 @@ de:
   label_chronological_order: "in zeitlicher Reihenfolge"
   label_close_versions: "Vollständige Versionen schließen"
   label_closed_work_packages: "geschlossen"
+  label_collapse: "Zuklappen"
+  label_collapse_all: "Alle zuklappen"
   label_comment_add: "Kommentar hinzufügen"
   label_comment_added: "Kommentar hinzugefügt"
   label_comment_delete: "Kommentar löschen"
@@ -657,7 +676,6 @@ de:
   label_date_to: "Bis"
   label_day_plural: "Tage"
   label_default: "Standard"
-  label_default_columns: "Standard-Spalten"
   label_deleted: "gelöscht"
   label_deleted_custom_field: "(gelöschtes benutzerdefiniertes Feld)"
   label_descending: "Absteigend"
@@ -668,7 +686,6 @@ de:
   label_disabled: "gesperrt"
   label_display: "Anzeige"
   label_display_per_page: "Pro Seite: %{value}"
-  label_display_sums: "Summen anzeigen"
   label_display_used_statuses_only: "Zeige nur Status an, die von diesem Typ verwendet werden"
   label_download: "%{count} Download"
   label_download_plural: "%{count} Downloads"
@@ -683,6 +700,8 @@ de:
   label_environment: "Umgebung"
   label_equals: "ist"
   label_example: "Beispiel"
+  label_expand: "Aufklappen"
+  label_expand_all: "Alle aufklappen"
   label_export_to: "Auch abrufbar als:"
   label_f_hour: "%{value} Stunde"
   label_f_hour_plural: "%{value} Stunden"
@@ -1054,6 +1073,7 @@ de:
   notice_locking_conflict_additional_information: "Die Änderungen wurden durchgeführt von %{users}."
   notice_locking_conflict_reload_page: "Bitte laden Sie die Seite neu, machen Sie sich mit den Änderungen vertraut und geben Sie Ihre Änderungen noch einmal ein."
   notice_no_principals_found: "Keine Treffer gefunden."
+  notice_bad_request: "Fehlerhafte Anfrage."
   notice_not_authorized: "Sie sind nicht berechtigt, auf diese Seite zuzugreifen."
   notice_not_authorized_archived_project: "Das Projekt wurde archiviert und ist daher nicht verfügbar."
   notice_successful_connection: "Verbindung erfolgreich."
@@ -1251,6 +1271,8 @@ de:
   setting_text_formatting: "Textformatierung"
   setting_time_format: "Zeitformat"
   setting_ui_theme: "Stil"
+  setting_user_may_override_theme: "Benutzer dürfen einen eigenen Stil wählen"
+  setting_accessibility_mode_for_anonymous: "Für barrierefreie Nutzung optimierte Oberfläche für nicht angemeldete Nutzer."
   setting_user_format: "Benutzer-Anzeigeformat"
   setting_users_deletable_by_admins: "Admins können Nutzeraccounts löschen"
   setting_users_deletable_by_self: "Nutzer können ihren Account löschen"
@@ -1444,6 +1466,7 @@ de:
       parent: "Zeige Unterprojekte von"
       work_package_filters: "Arbeitspakete filtern"
       work_package_responsible: "Arbeitspakete von diesem Verantwortlichen anzeigen"
+      work_package_assignee: "Zugewiesen an"
 
       project_time_filter: "Projekte mit Arbeitspaket eines Typs in einem Zeitfenster"
       project_time_filter_historical: "von %{startdate} bis %{enddate}"

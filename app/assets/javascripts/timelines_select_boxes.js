@@ -53,6 +53,7 @@ jQuery(document).ready(function($) {
     $("#timeline_options_project_status"),
     $("#timeline_options_project_types"),
     $("#timeline_options_planning_element_responsibles"),
+    $("#timeline_options_planning_element_assignee"),
     $("#timeline_options_grouping_two_selection")
   ].each(function (item) {
     $(item).autocomplete({ multiple: true,
@@ -65,7 +66,9 @@ jQuery(document).ready(function($) {
     $("#timeline_options_planning_element_time_types"),
     $("#timeline_options_planning_element_status")
   ].each(function (item) {
-    $(item).autocomplete({});
+    $(item).autocomplete({
+      multiple: true
+    });
   });
 
   var item = $("#timeline_options_columns_");

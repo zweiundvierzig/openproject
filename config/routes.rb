@@ -36,6 +36,10 @@ OpenProject::Application.routes.draw do
   # see https://github.com/rails/rails/issues/5688
   match '/issues/*rest' => redirect { |params, req| "/work_packages/#{URI.escape(params[:rest])}" }
 
+  # Redirect wp short url for work packages to full URL
+  match '/wp(/)'    => redirect('/work_packages/')
+  match '/wp/*rest' => redirect { |params, req| "/work_packages/#{URI.escape(params[:rest])}" }
+
   scope :controller => 'account' do
     get '/account/force_password_change', :action => 'force_password_change'
     post '/account/change_password', :action => 'change_password'
@@ -112,8 +116,13 @@ OpenProject::Application.routes.draw do
   match '/help/:ctrl/:page' => 'help#index'
 
   resources :types
+  resources :statuses, :except => :show do
+    collection do
+      post 'update_work_package_done_ratio'
+    end
+  end
   resources :custom_fields, :except => :show
-  resources :search, :controller => 'search', :only => ['index']
+  match "(projects/:project_id)/search" => 'search#index', :as => "search"
 
   # only providing routes for journals when there are multiple subclasses of journals
   # all subclasses will look for the journals routes
@@ -330,7 +339,7 @@ OpenProject::Application.routes.draw do
   end
 
   namespace :work_packages do
-    match 'auto_complete' => 'auto_completes#index', :via => [:get, :post], :format => false
+    match 'auto_complete' => 'auto_completes#index', :via => [:get, :post]
     match 'context_menu' => 'context_menus#index', :via => [:get, :post], :format => false
     resources :calendar, :controller => 'calendars', :only => [:index]
     resource :bulk, :controller => 'bulk', :only => [:edit, :update, :destroy]

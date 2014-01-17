@@ -197,7 +197,7 @@ Given /^the [pP]roject "([^\"]*)" has 1 [sS]ubproject with the following:$/ do |
 end
 
 Given /^there are the following types:$/ do |table|
-  table.map_headers! { |header| header.underscore.gsub(' ', '_') }
+  table = table.map_headers { |header| header.underscore.gsub(' ', '_') }
   table.hashes.each_with_index do |t, i|
     type = Type.find_by_name(t['name'])
     type = Type.new :name => t['name'] if type.nil?
@@ -328,6 +328,11 @@ Given /^the [pP]roject uses the following modules:$/ do |table|
   step %Q{the project "#{get_project}" uses the following modules:}, table
 end
 
+Given(/^the user "(.*?)" is responsible$/) do |user|
+  project = get_project
+  project.responsible_id = User.find_by_login(user).id
+  project.save
+end
 
 Given /^the [pP]roject(?: "([^\"]*)")? has the following types:$/ do |project_name, table|
   p = get_project(project_name)

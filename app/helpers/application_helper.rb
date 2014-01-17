@@ -66,6 +66,10 @@ module ApplicationHelper
     end
   end
 
+  def required_field_name(name = '')
+    safe_join [name, ' ', content_tag('span', '*', class: 'required')]
+  end
+
   def li_unless_nil(link)
     content_tag(:li, link) if link
   end
@@ -204,7 +208,7 @@ module ApplicationHelper
     options = {
       :method => :delete,
       :data => {:confirm => l(:text_are_you_sure)},
-      :class => 'icon icon-del'
+      :class => 'icon icon-delete'
     }.merge(options)
 
     link_to l(:button_delete), url, options
@@ -473,15 +477,11 @@ module ApplicationHelper
   # Returns the theme, controller name, and action as css classes for the
   # HTML body.
   def body_css_classes
-    theme = OpenProject::Themes.theme(Setting.ui_theme)
-
-    css = ['theme-' + theme.identifier.to_s]
-
+    css = ['theme-' + current_theme.identifier.to_s]
     if params[:controller] && params[:action]
       css << 'controller-' + params[:controller]
       css << 'action-' + params[:action]
     end
-
     css.join(' ')
   end
 

@@ -1,0 +1,68 @@
+/*-- copyright
+ * OpenProject is a project management system.
+ * Copyright (C) 2012-2013 the OpenProject Foundation (OPF)
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License version 3.
+ *
+ * OpenProject is a fork of ChiliProject, which is a fork of Redmine. The copyright follows:
+ * Copyright (C) 2006-2013 Jean-Philippe Lang
+ * Copyright (C) 2010-2013 the ChiliProject Team
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * See doc/COPYRIGHT.rdoc for more details.  ++*/
+
+@mixin html_body_spacing
+  margin:             0
+  padding:            0
+  height:             100%
+
+@mixin default-transition
+  -webkit-transition: all 200ms ease-in-out 0s
+  -moz-transition:    all 200ms ease-in-out 0s
+  -ms-transition:     all 200ms ease-in-out 0s
+  -o-transition:      all 200ms ease-in-out 0s
+  transition:         all 200ms ease-in-out 0s
+
+@mixin default-font-normal($color, $font-size: 13px)
+  color:              $color
+  font-size:          $font-size
+  font-family:        $font_family_normal
+  font-weight:        normal
+
+@mixin default-font-bold($color, $font-size: 13px)
+  color:              $color
+  font-size:          $font-size
+  font-family:        $font_family_bold
+  font-weight:        normal
+
+@mixin main-menu-font
+  font-style:         normal
+  font-family:        $font_family_normal
+
+@mixin header-fonts($color, $font-size: $header_item_font_size)
+  @include default-font-normal($color, $font-size)
+
+@mixin breadcrumb-font($color)
+  @include default-font-normal($color, $breadcrumb_font_size)
+
+@mixin breadcrumb-font-bold($color)
+  @include default-font-bold($color, $breadcrumb_font_size)
+
+@mixin border-radius($radius)
+  -webkit-border-radius: $radius
+  -moz-border-radius: $radius
+  border-radius: $radius
