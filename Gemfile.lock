@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:finnlabs/subscribem.git
-  revision: a7869834362c66df1ba3497988bfa94fcbe0e879
+  revision: 860763a0fe8e657380d1aed949c8c233662dd7da
   branch: development
   specs:
     subscribem (0.0.1)
