@@ -100,8 +100,6 @@ group :assets do
   gem 'select2-rails', '~> 3.3.2'
   gem 'jquery-atwho-rails'
   gem 'openproject-ui_components', git: 'git@github.com:opf/openproject-ui_components.git', branch: 'dev'
-  gem 'angularjs-rails'
-  gem 'angular-ui-select2-rails'
 end
 
 gem "prototype-rails"

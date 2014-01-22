@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:opf/openproject-ui_components.git
-  revision: eabe03c3b372b525b47569c62d68c517644ff0a2
+  revision: 93479859a1810e33dd7d2a1fee5d2f32cebc70f6
   branch: dev
   specs:
     openproject-ui_components (0.0.1)
@@ -372,8 +372,6 @@ DEPENDENCIES
   activerecord-jdbcsqlite3-adapter
   activerecord-tableless (~> 1.0)
   acts_as_list (~> 0.2.0)
-  angular-ui-select2-rails
-  angularjs-rails
   awesome_nested_set
   capybara
   capybara-screenshot
