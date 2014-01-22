@@ -67,6 +67,7 @@
 //= require top-shelf
 //= require unsupported-browsers
 //= require_tree ./pages
+//= require ./angular/reports_app
 //= require ./angular/timelines_app
 //= require_tree ./angular
 //= require openproject_plugins

@@ -27,9 +27,11 @@ See doc/COPYRIGHT.rdoc for more details.
 
 ++#%>
 
+<%= include_gon %>
+
 <h2><%=l(:label_summary)%></h2>
 
-<div class="splitcontentleft">
+<div ng-app="openproject.reports" class="splitcontentleft">
 <%
 [@type_report, @priority_report, @assignee_report, @author_report].each do |report| %>
   <%= render :partial => 'report_category', :locals => { report: report} %>

@@ -42,7 +42,10 @@ See doc/COPYRIGHT.rdoc for more details.
     </tr>
   </thead>
 <tbody>
+
 <% for row in report.rows %>
+<% total = aggregate report.data, { report.field => row.id } %>
+
 <tr class="<%= cycle("odd", "even") %>">
   <td>
     <%= link_to h(row.name),
@@ -52,7 +55,16 @@ See doc/COPYRIGHT.rdoc for more details.
                                            "#{report.field}" => row.id) %>
   </td>
 <% for status in report.statuses %>
-  <td align="center">
+<% current = aggregate report.data, { report.field => row.id, "status_id" => status.id } %>
+  <td align="center" ng-controller="op-report-type-controller">
+    <op-report-circle caption="<%= current %>"
+                      radius="<%= total > 0 ? 12.5 * (current + total)/ total : 2 %>"
+                      href="<%= project_work_packages_path((row.is_a?(Project) ? row : @project),
+                                                                    :set_filter => 1,
+                                                                    :subproject_id => '!*',
+                                                                    "status_id" => status.id,
+                                                                    report.field => row.id )%>">
+    <op-report-circle>
     <%= aggregate_link report.data,
                        { report.field => row.id, "status_id" => status.id },
                        project_work_packages_path((row.is_a?(Project) ? row : @project),

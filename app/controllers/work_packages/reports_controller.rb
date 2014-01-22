@@ -42,6 +42,8 @@ class WorkPackages::ReportsController < ApplicationController
     @subproject_report= reports_service.report_for("subproject")
     @category_report  = reports_service.report_for("category")
 
+    gon.type_report = @type_report
+
   end
 
   def report_details
