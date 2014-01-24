@@ -57,6 +57,7 @@ See doc/COPYRIGHT.rdoc for more details.
 * `#3667` Better icon for Roadmap
 * `#3863` Strange additional journal entry when moving work package
 * `#3879` Work Package Show: Attachments are shown within attributes table
+* `#3947` [CodeClimate] Mass Assignment BoardsController
 
 ## 3.0.0pre42
 
