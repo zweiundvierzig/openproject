@@ -56,15 +56,16 @@ See doc/COPYRIGHT.rdoc for more details.
   </td>
 <% for status in report.statuses %>
 <% current = aggregate report.data, { report.field => row.id, "status_id" => status.id } %>
+<% href = project_work_packages_path((row.is_a?(Project) ? row : @project),
+                                     :set_filter => 1,
+                                     :subproject_id => '!*',
+                                     "status_id" => status.id,
+                                     report.field => row.id ) %>
+
   <td align="center" ng-controller="op-report-type-controller">
-    <op-report-circle caption="<%= current %>"
-                      radius="<%= total > 0 ? 12.5 * (current + total)/ total : 2 %>"
-                      href="<%= project_work_packages_path((row.is_a?(Project) ? row : @project),
-                                                                    :set_filter => 1,
-                                                                    :subproject_id => '!*',
-                                                                    "status_id" => status.id,
-                                                                    report.field => row.id )%>">
-    <op-report-circle>
+    <op-punch caption="<%= current > 0 ? current : "" %>"
+              value="<%= rand %><%# total > 0 ? current.to_f/total : 0 %>"
+              href="<%= %>" />
     <%= aggregate_link report.data,
                        { report.field => row.id, "status_id" => status.id },
                        project_work_packages_path((row.is_a?(Project) ? row : @project),

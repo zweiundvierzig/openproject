@@ -4,14 +4,17 @@ reports.controller('op-report-type-controller', function($scope) {
   $scope.radius = 30;
 });
 
-reports.directive('opReportCircle', function() {
+reports.directive('opPunch', function() {
   return {
     scope: {
-      radius: '@',
+      value: '@',
       caption: '@',
       href: '@'
     },
     restrict: 'E',
-    template: '<svg height="{{ 2*radius || 50 }}" width="{{ 2*radius || 50 }}"><a xlink:href="{{ href }}"><circle cx="{{ radius || 25 }}" cy="{{ radius || 25 }}" r="{{ radius-2 || 23 }}" stroke="#00658f" stroke-width="2" fill="#2480a5" /></a></svg>'
+    link : function($scope, $elem, $attr) {
+      $scope.Math = Math;
+    },
+    template: '<svg height="50" width="50"><a xlink:href="{{ href }}"><circle cx="25" cy="25" r="{{ 23 * Math.sqrt(value) }}" stroke="#00658f" stroke-width="2" fill="#2480a5" /><text font-size="10" text-anchor="middle" x="25" y="29" fill="#ffffff">{{ caption }}</text></a></svg>'
   };
 });
