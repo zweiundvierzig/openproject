@@ -66,6 +66,14 @@ class PermittedParams < Struct.new(:params, :user)
     permitted_attributes[key].concat(params)
   end
 
+  def board
+    params.require(:board).permit(*self.class.permitted_attributes[:board])
+  end
+
+  def board?
+    params[:board] ? board : nil
+  end
+
   def board_move
     params.require(:board).permit(*self.class.permitted_attributes[:move_to])
   end
@@ -237,6 +245,9 @@ class PermittedParams < Struct.new(:params, :user)
 
   def self.permitted_attributes
     @whitelisted_params ||= {
+      :board => [
+        :name,
+        :description],
       :color => [
         :name,
         :hexcode,
