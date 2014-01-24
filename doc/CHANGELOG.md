@@ -30,6 +30,9 @@ See doc/COPYRIGHT.rdoc for more details.
 # Changelog
 
 * `#2018` Cleanup journal tables
+* `#3332` [CodeClimate] Mass Assignment AuthSourcesController
+* `#3333` [CodeClimate] Mass Assignment RolesController
+* `#3947` [CodeClimate] Mass Assignment BoardsController
 
 ## 3.0.0pre43
 
@@ -57,7 +60,6 @@ See doc/COPYRIGHT.rdoc for more details.
 * `#3667` Better icon for Roadmap
 * `#3863` Strange additional journal entry when moving work package
 * `#3879` Work Package Show: Attachments are shown within attributes table
-* `#3947` [CodeClimate] Mass Assignment BoardsController
 
 ## 3.0.0pre42
 

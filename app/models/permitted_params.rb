@@ -66,6 +66,10 @@ class PermittedParams < Struct.new(:params, :user)
     permitted_attributes[key].concat(params)
   end
 
+  def auth_source
+    params.require(:auth_source).permit(*self.class.permitted_attributes[:auth_source])
+  end
+
   def board
     params.require(:board).permit(*self.class.permitted_attributes[:board])
   end
@@ -153,6 +157,14 @@ class PermittedParams < Struct.new(:params, :user)
     p[:sort_criteria] = params.require(:query).permit(:sort_criteria => {'0' => [], '1' => [], '2' => []})
     p[:sort_criteria].delete :sort_criteria
     p
+  end
+
+  def role
+    params.require(:role).permit(*self.class.permitted_attributes[:role])
+  end
+
+  def role?
+    params[:role] ? role : nil
   end
 
   def status
@@ -245,9 +257,25 @@ class PermittedParams < Struct.new(:params, :user)
 
   def self.permitted_attributes
     @whitelisted_params ||= {
+<<<<<<< HEAD
       :board => [
         :name,
         :description],
+=======
+      :auth_source => [
+        :name,
+        :host,
+        :port,
+        :tls,
+        :account,
+        :account_password,
+        :base_dn,
+        :onthefly_register,
+        :attr_login,
+        :attr_firstname,
+        :attr_lastname,
+        :attr_mail],
+>>>>>>> dev
       :color => [
         :name,
         :hexcode,
@@ -353,6 +381,11 @@ class PermittedParams < Struct.new(:params, :user)
         :display_sums,
         :is_public,
         :group_by],
+      :role => [
+        :name,
+        :assignable,
+        :move_to,
+        :permissions => []],
       :status => [
         :name,
         :default_done_ratio,
