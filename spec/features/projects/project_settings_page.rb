@@ -26,31 +26,21 @@
 # See doc/COPYRIGHT.rdoc for more details.
 #++
 
-FactoryGirl.define do
-  factory :work_package do
-    ignore do
-      custom_values nil
-    end
+class ProjectSettingsPage
+  include Rails.application.routes.url_helpers
+  include Capybara::DSL
 
-    priority
-    project :factory => :project_with_types
-    status :factory => :status
-    sequence(:subject) { |n| "WorkPackage No. #{n}" }
-    description { |i| "Description for '#{i.subject}'" }
-    author :factory => :user
+  def initialize(project)
+    @project = project
+  end
 
-    after :build do |work_package, evaluator|
-      work_package.type = work_package.project.types.first unless work_package.type
+  def visit_settings
+    visit settings_path
+  end
 
-      custom_values = evaluator.custom_values || {}
+  private
 
-      if custom_values.is_a? Hash
-        custom_values.each_pair do |custom_field_id, value|
-          work_package.custom_values.build custom_field_id: custom_field_id, value: value
-        end
-      else
-        custom_values.each { |cv| work_package.custom_values << cv }
-      end
-    end
+  def settings_path
+    settings_project_path(@project)
   end
 end
