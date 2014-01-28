@@ -35,16 +35,15 @@ class CleanWikiContentJournals < ActiveRecord::Migration
       YAML::ENGINE.yamler = 'syck'
 
       journal_ids.each do |journal_id|
-        correct_version, correct_text = execute(
-          "SELECT version, changed_data FROM legacy_journals WHERE activity_type = 'wiki_edits' AND id = #{journal_id}"
-        ).to_a.map do |version, text|
-          [version, YAML.load(text)["data"]]
-        end.first || raise("Could not find correct journal version and text for #{journal_id}.")
+        correct_text = execute(
+          "SELECT changed_data FROM legacy_journals WHERE activity_type = 'wiki_edits' AND id = #{journal_id}"
+        ).to_a.flatten.map do |text|
+          YAML.load(text)["data"]
+        end.first || raise("Could not find correct journal text for #{journal_id}.")
 
         update = <<-sql
           UPDATE wiki_content_journals
           SET
-            lock_version = #{correct_version},
             text = ?
           WHERE journal_id = #{journal_id}
         sql
