@@ -47,7 +47,9 @@ class CleanWikiContentJournals < ActiveRecord::Migration
             text = ?
           WHERE journal_id = #{journal_id}
         sql
-        execute(ActiveRecord::Base.send(:sanitize_sql_array, [update, correct_text]))
+        say "correcting text for journal #{journal_id}"
+        execute(ActiveRecord::Base.send(:sanitize_sql_array, [update, correct_text]), :skip_logging)
+        # disabled logging because it's too much output otherwise (think citrix)
       end
     ensure
       YAML::ENGINE.yamler = current_yamler
