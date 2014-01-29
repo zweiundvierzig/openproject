@@ -5,7 +5,7 @@ class RemoveObsoleteTablesAndColumns < ActiveRecord::Migration
     drop_table :principal_roles if ActiveRecord::Base.connection.table_exists? 'principal_roles'
 
     remove_column :repositories, :checkout_settings
-    remove_column :type, :roles
+    remove_column :roles, :type
   end
 
   def down
