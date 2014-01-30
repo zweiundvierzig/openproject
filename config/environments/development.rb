@@ -72,4 +72,9 @@ OpenProject::Application.configure do
   else
     config.cache_store = :memory_store
   end
+
+  config.to_prepare do
+    require 'allowance/user'
+    require 'allowance/project'
+  end
 end
