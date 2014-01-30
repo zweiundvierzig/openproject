@@ -266,11 +266,7 @@ class UsersController < ApplicationController
     @user.status = User::STATUSES[:locked]
     @user.save
 
-    # TODO: use Delayed::Worker.delay_jobs = false in test environment as soon as
-    # delayed job allows for it
-    Rails.env.test? ?
-      @user.destroy :
-      @user.delay.destroy
+    Delayed::Job.enqueue DeleteUserJob.new(@user.id)
 
     flash[:notice] = l('account.deleted')
 
