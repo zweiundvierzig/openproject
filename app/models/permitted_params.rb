@@ -257,11 +257,6 @@ class PermittedParams < Struct.new(:params, :user)
 
   def self.permitted_attributes
     @whitelisted_params ||= {
-<<<<<<< HEAD
-      :board => [
-        :name,
-        :description],
-=======
       :auth_source => [
         :name,
         :host,
@@ -275,7 +270,9 @@ class PermittedParams < Struct.new(:params, :user)
         :attr_firstname,
         :attr_lastname,
         :attr_mail],
->>>>>>> dev
+      :board => [
+        :name,
+        :description],
       :color => [
         :name,
         :hexcode,
