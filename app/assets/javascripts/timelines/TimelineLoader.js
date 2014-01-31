@@ -530,6 +530,15 @@ Timeline.TimelineLoader = (function () {
       }
     };
 
+    DataEnhancer.prototype.hideVerticalFilteredPlanningElements = function (pe) {
+      var reminingIDs = dataEnhancer.remainingPlanningElementIDs;
+      if (remainingIDs && remainingIDs.indexOf(pe.id) > -1) {
+          pe.hide = function () {
+            return true;
+          }
+      }
+    }
+
     DataEnhancer.prototype.augmentPlanningElementsWithAllKindsOfStuff = function () {
       var dataEnhancer = this;
 
@@ -539,6 +548,9 @@ Timeline.TimelineLoader = (function () {
         dataEnhancer.augmentPlanningElementWithProject(e);
         dataEnhancer.augmentPlanningElementWithParent(e);
         dataEnhancer.augmentPlanningElementWithUser(e);
+
+        dataEnhancer.hideVerticalFilteredPlanningElements(e);
+        
         if (e.historical_element) {
           dataEnhancer.augmentPlanningElementWithStatus(e.historical_element);
           dataEnhancer.augmentPlanningElementWithType(e.historical_element);
@@ -881,6 +893,8 @@ Timeline.TimelineLoader = (function () {
           necessaryIDs.push(vp[i]);
         }
       }
+
+      this.dataEnhancer.remainingPlanningElementIDs = necessaryIDs;
 
       return necessaryIDs;
     };
