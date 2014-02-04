@@ -83,7 +83,7 @@ gem 'rack-protection'
 
 gem 'syck', :platforms => [:ruby_20, :mingw_20, :ruby_21, :mingw_21], :require => false
 
-gem 'gon'
+gem 'gon', git: "git@github.com:manwithtwowatches/gon.git", branch: "nil-env-fix"
 
 group :production do
   # we use dalli as standard memcache client
