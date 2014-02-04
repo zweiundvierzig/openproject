@@ -31,4 +31,7 @@
 require ::File.expand_path('../config/environment',  __FILE__)
 use Rack::Protection::JsonCsrf
 use Rack::Protection::FrameOptions
-run OpenProject::Application
+
+map OpenProject::Configuration["rails_relative_url_root"] || '/' do
+  run OpenProject::Application
+end
